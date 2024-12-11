@@ -65,7 +65,7 @@ function Visualise() {
           Choose Partition
         </div>
         <div className="h-[50%] w-[70%] flex">
-          <div className="w-1/2 h-full flex items-center justify-center">
+          <div className="flex items-center justify-center w-1/2 h-full">
             <div
               onClick={() => {
                 setFixed(true);
@@ -78,10 +78,10 @@ function Visualise() {
               } h-[90%] w-[90%] rounded-xl  ease-in-out duration-150 gap-5 flex flex-col items-center justify-center`}
             >
               <img src={fixed} alt="" className="h-[50%]" />
-              <p className=" text-3xl font-medium text-black">Fixed</p>
+              <p className="text-3xl font-medium text-black ">Fixed</p>
             </div>
           </div>
-          <div className="w-1/2 h-full flex items-center justify-center">
+          <div className="flex items-center justify-center w-1/2 h-full">
             <div
               onClick={() => {
                 setDyn(true);
@@ -94,14 +94,14 @@ function Visualise() {
               } h-[90%] w-[90%] rounded-xl  ease-in-out duration-150 gap-5 flex flex-col items-center justify-center`}
             >
               <img src={dynamic} alt="" className="h-[50%]" />
-              <p className=" text-3xl font-medium text-black">Dynamic</p>
+              <p className="text-3xl font-medium text-black ">Dynamic</p>
             </div>
           </div>
         </div>
       </div>
       {/* Memory */}
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="text-3xl flex  items-center justify-start font-semibold w-full pl-52 pb-12 text-logo-color">
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex items-center justify-start w-full pb-12 text-3xl font-semibold pl-52 text-logo-color">
           Memory
         </div>
         <div className="flex gap-3">
@@ -112,7 +112,7 @@ function Visualise() {
             setData={setSize}
             placeholder="Eg. 100KB"
           />
-          <div className="pt-8 flex gap-5">
+          <div className="flex gap-5 pt-8">
             <Button
               name="Add"
               x="50px"
@@ -144,8 +144,8 @@ function Visualise() {
       </AnimatePresence>
 
       {/* Processes */}
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="text-3xl flex items-center justify-start font-semibold w-full pl-52 pb-12 text-logo-color">
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex items-center justify-start w-full pb-12 text-3xl font-semibold pl-52 text-logo-color">
           Process
         </div>
         <div className="flex gap-3">
@@ -156,7 +156,7 @@ function Visualise() {
             setData={setPSize}
             placeholder="Eg. 100KB"
           />
-          <div className="pt-8 flex gap-5">
+          <div className="flex gap-5 pt-8">
             <Button
               name="Add"
               x="50px"
@@ -198,7 +198,7 @@ function Visualise() {
         bg="bg-emerald-500"
         bghov="bg-logo-color"
       />
-      <div className="h-full w-full flex justify-center items-center border-t-8 border-t-logo-color mt-10">
+      <div className="flex items-center justify-center w-full h-full mt-10 border-t-8 border-t-logo-color">
       {showFit && Fixed && <FixedPt memory={memory} process={process} />}
       {showFit && Dyn && <DynamicPt memory={memory} process={process} />}
       </div>
