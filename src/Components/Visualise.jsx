@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import fixed from "../assets/fixedpt.png";
 import dynamic from "../assets/dynamicpt.png";
 import DynamicPt from "./DynamicPt";
-import FixedPt from "./FixedPt";
 import Input from "./Input";
 import Button from "./Button";
 import MemoryBlock from "./MemoryBlock";
@@ -10,23 +8,21 @@ import ProcessBlock from "./ProcessBlock";
 import { AnimatePresence } from "framer-motion";
 
 function Visualise() {
-  const [Fixed, setFixed] = useState(true);
   const [Dyn, setDyn] = useState(false);
   const [memory, setMemory] = useState([]);
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState("");
   const [process, setprocess] = useState([]);
-  const [psize, setPSize] = useState('');
+  const [psize, setPSize] = useState("");
   const [showFit, setShowFit] = useState(false);
 
   const addMemory = () => {
     if (size <= 0) {
       alert("Enter a Valid Size");
-    }else if(memory.length == 100){
-      alert('Only 5 Memory Blocks Allowed');
-    } 
-    else {
+    } else if (memory.length == 100) {
+      alert("Only 5 Memory Blocks Allowed");
+    } else {
       setMemory([...memory, size]);
-      setSize('');
+      setSize("");
     }
   };
   const deleteMemory = () => {
@@ -36,15 +32,15 @@ function Visualise() {
       setMemory([...memory.slice(0, -1)]);
     }
   };
-  
+
   const addProcess = () => {
     if (psize <= 0) {
       alert("Enter a Valid Size");
-    }else if(process.length == 100){
-      alert('Only 10 Processes Allowed')
+    } else if (process.length == 100) {
+      alert("Only 10 Processes Allowed");
     } else {
       setprocess([...process, psize]);
-      setPSize('');
+      setPSize("");
     }
   };
   const deleteProcess = () => {
@@ -58,29 +54,15 @@ function Visualise() {
   return (
     <div className="min-h-[95vh] w-full flex flex-col items-center justify-center p-5">
       <div className="min-h-[10vh] mt-4 text-4xl font-semibold">
-        <span className="text-logo-color">Memory Allocation</span> Algorithms
+        <span className="text-logo-color">Best Fit</span> Algorithms
       </div>
       <div className="h-[60vh] w-[80%] flex flex-col items-center justify-center mb-5">
         <div className="h-[30%] w-[70%] text-3xl items-center justify-center flex font-semibold border-b-logo-color border-b-2 mb-5">
           Choose Partition
         </div>
-        <div className="h-[50%] w-[70%] flex">
-          <div className="flex items-center justify-center w-1/2 h-full">
-            <div
-              onClick={() => {
-                setFixed(true);
-                setDyn(false);
-              }}
-              className={`${
-                Fixed
-                  ? "bg-logo-color"
-                  : "bg-slate-300 hover:border-4 hover:border-sky-400 hover:bg-sky-200 cursor-pointer"
-              } h-[90%] w-[90%] rounded-xl  ease-in-out duration-150 gap-5 flex flex-col items-center justify-center`}
-            >
-              <img src={fixed} alt="" className="h-[50%]" />
-              <p className="text-3xl font-medium text-black ">Fixed</p>
-            </div>
-          </div>
+        <div className="h-[50%] w-[70%] flex justify-center">
+         
+
           <div className="flex items-center justify-center w-1/2 h-full">
             <div
               onClick={() => {
@@ -91,7 +73,7 @@ function Visualise() {
                 Dyn
                   ? "bg-logo-color"
                   : "bg-slate-300 hover:border-4 hover:border-sky-400 hover:bg-sky-200 cursor-pointer"
-              } h-[90%] w-[90%] rounded-xl  ease-in-out duration-150 gap-5 flex flex-col items-center justify-center`}
+              } flex-1 h-[90%] w-[90%] rounded-xl ease-in-out duration-150 gap-5 flex flex-col items-center justify-center`}
             >
               <img src={dynamic} alt="" className="h-[50%]" />
               <p className="text-3xl font-medium text-black ">Dynamic</p>
@@ -108,7 +90,7 @@ function Visualise() {
           <Input
             type="number"
             value={size}
-            heading="Enter Partition Size"
+            heading="Enter Block Size"
             setData={setSize}
             placeholder="Eg. 100KB"
           />
@@ -134,13 +116,13 @@ function Visualise() {
         </div>
       </div>
       <AnimatePresence>
-      <div className="h-[20vh] flex overflow-auto gap-y-1 w-[90vw] justify-center items-center my-10">
-        {memory.length > 0
-          ? memory.map((obj, index) => {
-            return <MemoryBlock size={obj} key={index}/>;
-          })
-          : "No Memory Available"}
-      </div>
+        <div className="h-[20vh] flex overflow-auto gap-y-1 w-[90vw] justify-center items-center my-10">
+          {memory.length > 0
+            ? memory.map((obj, index) => {
+                return <MemoryBlock size={obj} key={index} />;
+              })
+            : "No Memory Available"}
+        </div>
       </AnimatePresence>
 
       {/* Processes */}
@@ -185,13 +167,13 @@ function Visualise() {
           : "No Process Available"}
       </div>
       <Button
-        name="Craft"
-        x="100px"
-        y="50px"
-        func={()=>{
-          if(process.length && memory.length){
-            setShowFit(!showFit)
-          }else{  
+        name="Allocation"
+        x="200px"
+        y="100px"
+        func={() => {
+          if (process.length && memory.length) {
+            setShowFit(!showFit);
+          } else {
             alert("Memory Empty or Process not available!");
           }
         }}
@@ -199,8 +181,7 @@ function Visualise() {
         bghov="bg-logo-color"
       />
       <div className="flex items-center justify-center w-full h-full mt-10 border-t-8 border-t-logo-color">
-      {showFit && Fixed && <FixedPt memory={memory} process={process} />}
-      {showFit && Dyn && <DynamicPt memory={memory} process={process} />}
+        {showFit && Dyn && <DynamicPt memory={memory} process={process} />}
       </div>
     </div>
   );
